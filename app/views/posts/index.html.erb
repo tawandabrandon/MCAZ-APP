@@ -1,0 +1,39 @@
+<%- model_class = Post -%>
+<div class="page-header">
+  <h1>Updates</h1>
+</div>
+    <% @posts.each do |post| %>
+    <% if current_user == post.user || current_user.admin == true %>
+     <div class"container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <% if post.user.admin == true %>
+          <h3 class="panel-title" > <a <span class="badge">Admin</span> </a> <%= post.address %>, <%= post.issue %></h3>
+          <%else%>
+            <h3 class="panel-title"><b><%= post.address %></b>, <%= post.issue %></h3>
+            <% end %>
+        </div>
+        
+        <div class="panel-body">
+           <%= post.comment %> <br />
+           On <b><%=l post.created_at %></b>
+        </div>
+        
+        <div class="panel-footer">
+             <%= link_to t('.show', :default => t("helpers.links.show")),
+                      post_path(post), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_post_path(post), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      post_path(post),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+
+        </div>
+        </div>
+         </div>
+       <% end %>
+    <% end %>
+
+

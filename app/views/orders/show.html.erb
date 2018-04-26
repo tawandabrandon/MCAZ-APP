@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @order.user_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @order.title %>
+</p>
+
+<p>
+  <strong>Destination:</strong>
+  <%= @order.destination %>
+</p>
+
+<p>
+  <strong>Mass:</strong>
+  <%= @order.mass %>
+</p>
+
+<p>
+  <strong>Qtty:</strong>
+  <%= @order.qtty %>
+</p>
+
+<p>
+  <strong>Reference:</strong>
+  <%= @order.reference %>
+</p>
+
+<p>
+  <strong>Dom:</strong>
+  <%= @order.dom %>
+</p>
+<hr>
+<h4>Statuses</h4>
+    <% @order.statuses.each do |status| %>
+        <div>
+            <strong><%= status.user_id %></strong>
+            <br />
+            <p><%= status.body %></p>
+            <p><%= link_to 'Delete', status_path(status), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        </div>
+    <% end %>
+<%= render 'statuses/form' %>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
+<%= link_to "Add Comment", new_status_path(order_id: @order.id) %>

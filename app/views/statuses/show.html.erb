@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @status.order_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @status.title %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @status.status %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @status.comment %>
+</p>
+
+<%= link_to 'Edit', edit_status_path(@status) %> |
+<%= link_to 'Back', statuses_path %>
