@@ -20,6 +20,11 @@ class OrdersController < ApplicationController
     @status = Status.new(order_id: params[:order_id])
   end
 
+  # GET /orders/search
+  def search
+    @order = Order.find_by_ref(params[:reference])
+  end
+
   # GET /orders/1/edit
   def edit
   end
@@ -27,7 +32,8 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = current_user.order.build(order_params)
+    #@order = Order.new(order_params)
 
     respond_to do |format|
       if @order.save

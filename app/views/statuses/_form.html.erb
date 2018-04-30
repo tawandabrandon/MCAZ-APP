@@ -1,13 +1,13 @@
-<%= form_for @order, :html => { :class => "form-horizontal post" } do |f| %>
+<%= form_for @status, :html => { :class => "form-horizontal status" } do |f| %>
 
-  <% if @post.errors.any? %>
+  <% if @status.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h3>
+        <h3 class="panel-title"><%= pluralize(@status.errors.count, "error") %> prohibited this status from being saved:</h3>
       </div>
       <div class="panel-body">
         <ul>
-        <% @post.errors.full_messages.each do |msg| %>
+        <% @status.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>
@@ -15,39 +15,41 @@
     </div>
   <% end %>
 
- <div class="container-fluid">
-  <%= f.hidden_field :order_id %>
-
   <div class="form-group">
-    <%= f.label :comment, :class => 'control-label col-lg-2' %>
+    <%= f.label :order_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.number_field :comment, :class => 'form-control' %>
+      <%= f.text_field :order_id, :class => 'form-control' %>
     </div>
-    <%=f.error_span(:address) %>
+    <%=f.error_span(:order_id) %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :status, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :status, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:address) %>
-  </div>
-
   <div class="form-group">
     <%= f.label :title, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :title, :class => 'form-control' %>
     </div>
-    <%=f.error_span(:address) %>
+    <%=f.error_span(:title) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :status, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :status, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:status) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :comment, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :comment, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:comment) %>
   </div>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                posts_path, :class => 'btn btn-default' %>
+                statuses_path, :class => 'btn btn-default' %>
     </div>
   </div>
- </div>
+
 <% end %>
